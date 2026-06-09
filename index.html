@@ -194,7 +194,21 @@ body::before {
   font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
 }
 .sec-head-title { color: var(--ink); }
-.sec-head-meta { color: var(--ink-mute); font-size: 8px; margin-left: 10px; white-space: nowrap; }
+.sec-head-right { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+.sec-head-meta { color: var(--ink-mute); font-size: 8px; white-space: nowrap; }
+.sec-allcb {
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+  color: var(--ink-mute); font-size: 8px; letter-spacing: .14em;
+  transition: color .15s; -webkit-tap-highlight-color: transparent;
+}
+.sec-allcb:hover { color: var(--ink); }
+.sec-allcb-box {
+  width: 15px; height: 15px; border: 1.5px solid var(--ink-mute);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; transition: all .18s;
+}
+.sec-allcb.done { color: var(--green); }
+.sec-allcb.done .sec-allcb-box { background: var(--green); border-color: var(--green); color: var(--bg); }
 .sec-body { }
 .sec-body.collapsed { display: none; }
 
@@ -473,8 +487,20 @@ body::before {
 .lib-group-hd {
   font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: .04em;
   color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  cursor: pointer; transition: color .15s, border-color .15s;
 }
-.lib-group-hd span { color: var(--accent); }
+.lib-group-hd:hover { border-color: var(--accent); }
+.lib-group-hd > span:first-child { color: var(--accent); }
+.lib-group-toggle {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-mute); white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+}
+.lib-group-caret { display: inline-block; transition: transform .2s; font-size: 11px; }
+.lib-group-hd.collapsed { margin-bottom: 0; }
+.lib-group-hd.collapsed .lib-group-caret { transform: rotate(-90deg); }
+.lib-group-body.collapsed { display: none; }
 .lib-card { border: 1px solid var(--line); background: var(--panel); margin-bottom: 12px; }
 .lib-card-hd {
   display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
@@ -781,6 +807,7 @@ var S = {
   lib: {},   // library state: libId → {active:optionIndex, opts:{optIndex:{sets,reps,weight,wOff}}}
   restDays: {}, // "w-d" → true  (manually toggled rest/off day)
   swap: {},  // week → dayIndex that swaps its rest with Wednesday
+  libCollapse: {}, // workout-library group key → true when collapsed/closed
   // supplement state
   suppChk: {}, // "suppDay-itemId" → true
   suppStart: null,
@@ -882,6 +909,7 @@ function loadAll() {
       S.lib      = p.lib      || {};
       S.restDays = p.restDays || {};
       S.swap     = p.swap     || {};
+      S.libCollapse = p.libCollapse || {};
       S.suppChk  = p.suppChk  || {};
       S.suppStart= p.suppStart|| null;
       // If we found data under a different key, re-save under current key
@@ -1435,7 +1463,14 @@ function buildDay(w,d){
 function renderLibrary(){
   var html='<div class="lib-intro">Every workout, every set/rep/weight option. Tap an option to make it <b>active</b> — the active option is what flows into your Daily Log. Use the +/− steppers to fine-tune any option; changes save instantly and reflect everywhere.</div>';
   LIB_GROUPS.forEach(function(g){
-    html+='<div class="lib-group"><div class="lib-group-hd"><span>'+LIB_GROUP_LABEL[g]+'</span></div>';
+    var collapsed=!!S.libCollapse[g];
+    var nEx=LIB_BY_GROUP[g].length;
+    html+='<div class="lib-group">'+
+      '<div class="lib-group-hd'+(collapsed?' collapsed':'')+'" onclick="toggleLibGroup(\''+g+'\')">'+
+        '<span>'+LIB_GROUP_LABEL[g]+'</span>'+
+        '<span class="lib-group-toggle">'+nEx+' exercises <span class="lib-group-caret">▾</span></span>'+
+      '</div>'+
+      '<div class="lib-group-body'+(collapsed?' collapsed':'')+'">';
     LIB_BY_GROUP[g].forEach(function(ex){
       var ai=libActiveIndex(ex);
       html+='<div class="lib-card">'+
@@ -1454,9 +1489,14 @@ function renderLibrary(){
       });
       html+='</div>';
     });
-    html+='</div>';
+    html+='</div></div>';
   });
   document.getElementById('libview').innerHTML=html;
+}
+function toggleLibGroup(g){
+  S.libCollapse[g]=!S.libCollapse[g];
+  saveAll();
+  renderLibrary();
 }
 // Format a specific option (not just the active one) for the library list
 function libOptStr(ex,oi){
@@ -1933,10 +1973,16 @@ function renderDay(){
       '</div>';
     } else {
       var secId='sec-'+si;
+      var allDone=(sec.items.length>0 && secDone===sec.items.length);
       html+='<div class="sec">'+
         '<div class="sec-head" onclick="toggleSec(\''+secId+'\')">'+
           '<span class="sec-head-title">'+sec.t+'</span>'+
-          '<span class="sec-head-meta">'+secDone+'/'+sec.items.length+' ▾</span>'+
+          '<span class="sec-head-right">'+
+            '<span class="sec-allcb'+(allDone?' done':'')+'" title="Check / uncheck every item in this section" onclick="event.stopPropagation();toggleSecAll('+S.w+','+S.d+','+si+','+sec.items.length+')">'+
+              '<span class="sec-allcb-box">'+(allDone?'✓':'')+'</span>All'+
+            '</span>'+
+            '<span class="sec-head-meta">'+secDone+'/'+sec.items.length+' ▾</span>'+
+          '</span>'+
         '</div>'+
         '<div class="sec-body" id="'+secId+'">';
 
@@ -2048,6 +2094,21 @@ function setWhiskey(val){
 function toggleSec(id){
   var el=document.getElementById(id);
   if(el) el.classList.toggle('collapsed');
+}
+
+// Check (or, if already all-checked, uncheck) every item in one daily-log section.
+function toggleSecAll(w,d,si,n){
+  if(n<=0) return;
+  var allDone=true;
+  for(var ii=0;ii<n;ii++){ if(!S.chk[w+'-'+d+'-'+si+'-'+ii]){ allDone=false; break; } }
+  var val=!allDone;
+  for(var ii=0;ii<n;ii++){
+    if(val) S.chk[w+'-'+d+'-'+si+'-'+ii]=true;
+    else delete S.chk[w+'-'+d+'-'+si+'-'+ii];
+  }
+  saveAll();
+  renderGrid();
+  renderDay();
 }
 
 function toggleChk(w,d,si,ii){
@@ -2491,6 +2552,7 @@ document.getElementById('import-file').addEventListener('change',function(e){
       if (parsed.lib)       S.lib       = parsed.lib;
       if (parsed.restDays)  S.restDays  = parsed.restDays;
       if (parsed.swap)      S.swap      = parsed.swap;
+      if (parsed.libCollapse) S.libCollapse = parsed.libCollapse;
       if (parsed.suppChk)   S.suppChk   = parsed.suppChk;
       if (parsed.suppStart) S.suppStart = parsed.suppStart;
       if (parsed.w)         S.w         = parsed.w;
