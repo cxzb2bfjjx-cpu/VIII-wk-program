@@ -465,6 +465,70 @@ body::before {
 .ol-cur { color: var(--ink-mute); margin: 0 10px; white-space: nowrap; }
 .ol-sug { color: var(--green); font-weight: 700; white-space: nowrap; }
 .ol-body { color: var(--ink-mute); font-size: 9px; margin-left: 6px; letter-spacing: .1em; }
+
+/* ── WORKOUT LIBRARY ─────────────────────────────────── */
+#libview { padding: 16px 16px 90px; }
+.lib-intro { font-family: 'Fraunces', serif; font-style: italic; font-size: 13px; color: var(--ink-dim); margin-bottom: 18px; max-width: 640px; }
+.lib-group { margin-bottom: 26px; }
+.lib-group-hd {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: .04em;
+  color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
+}
+.lib-group-hd span { color: var(--accent); }
+.lib-card { border: 1px solid var(--line); background: var(--panel); margin-bottom: 12px; }
+.lib-card-hd {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  padding: 11px 13px; border-bottom: 1px solid var(--line); flex-wrap: wrap;
+}
+.lib-name { font-size: 13px; color: var(--ink); font-weight: 600; }
+.lib-tag { font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); border: 1px solid var(--line); padding: 2px 6px; }
+.lib-note {
+  display: flex; gap: 7px; align-items: flex-start; padding: 8px 13px;
+  background: rgba(201,169,110,.07); border-bottom: 1px solid var(--line);
+  font-size: 10.5px; color: var(--accent); line-height: 1.4;
+}
+.lib-note b { color: var(--accent); }
+.lib-opt {
+  padding: 9px 13px; border-bottom: 1px solid rgba(42,41,38,.5);
+  cursor: pointer; transition: background .15s;
+}
+.lib-opt:last-child { border-bottom: none; }
+.lib-opt:hover { background: rgba(255,255,255,.02); }
+.lib-opt.active { background: rgba(201,169,110,.09); border-left: 3px solid var(--accent); }
+.lib-opt-top { display: flex; align-items: center; gap: 9px; }
+.lib-radio {
+  width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid var(--ink-mute);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+}
+.lib-opt.active .lib-radio { border-color: var(--accent); }
+.lib-opt.active .lib-radio::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.lib-opt-txt { font-size: 12px; color: var(--ink); flex: 1; }
+.lib-opt.active .lib-opt-txt { color: var(--accent); font-weight: 600; }
+.lib-opt-note { font-size: 9px; color: var(--ink-mute); letter-spacing: .06em; }
+.lib-steppers { display: flex; gap: 12px; flex-wrap: wrap; margin: 9px 0 2px 24px; }
+.lib-stp { display: flex; flex-direction: column; gap: 3px; }
+.lib-stp-lbl { font-size: 8px; letter-spacing: .15em; color: var(--ink-mute); text-transform: uppercase; }
+.lib-stp-ctrl { display: flex; align-items: center; }
+.lib-active-badge { font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+
+/* ── DAY CONTROL BUTTONS (rest toggle / swap) ────────── */
+.day-ctrls { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 2px; align-items: center; }
+.day-ctrl-btn {
+  background: transparent; border: 1px solid var(--line); color: var(--ink-mute);
+  padding: 6px 11px; cursor: pointer; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .12em; text-transform: uppercase; transition: all .2s;
+}
+.day-ctrl-btn:hover { border-color: var(--accent); color: var(--accent); }
+.day-ctrl-btn.on { border-color: var(--rest); color: var(--rest); background: rgba(120,140,170,.08); }
+.swap-row { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+.swap-lbl { font-size: 9px; letter-spacing: .12em; color: var(--ink-mute); text-transform: uppercase; }
+.swap-pick { background: transparent; border: 1px solid var(--line); color: var(--ink-mute); padding: 4px 9px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; transition: all .2s; }
+.swap-pick:hover { border-color: var(--accent); color: var(--accent); }
+.swap-pick.sel { border-color: var(--accent); color: var(--accent); background: rgba(201,169,110,.1); }
+.rest-banner {
+  border: 1px solid var(--rest); background: rgba(120,140,170,.08); color: var(--rest);
+  padding: 10px 13px; margin: 10px 0; font-size: 11px; letter-spacing: .08em; text-align: center;
+}
 .badge { display: inline-block; font-size: 9px; letter-spacing: .14em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 7px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; }
 .badge-new { color: var(--blue); border-color: var(--blue); }
 .stamp { display: inline-block; font-size: 9px; letter-spacing: .22em; color: var(--accent); border: 1px solid var(--accent); padding: 3px 9px; text-transform: uppercase; margin-bottom: 14px; }
@@ -506,6 +570,7 @@ body::before {
   <!-- TABS -->
   <div id="tabs">
     <button class="tab active" data-panel="daily">Daily Log</button>
+    <button class="tab" data-panel="workouts">Workouts</button>
     <button class="tab" data-panel="overview">Overview</button>
     <button class="tab" data-panel="supplog">Supplements</button>
     <button class="tab" data-panel="stack">The Stack</button>
@@ -519,6 +584,11 @@ body::before {
       <div id="wkbar"></div>
       <div id="dgrid"></div>
       <div id="dayview"></div>
+    </div>
+
+    <!-- ══ WORKOUT LIBRARY ═══════════════════════════════════ -->
+    <div class="panel" id="panel-workouts">
+      <div id="libview"></div>
     </div>
 
     <!-- ══ OVERVIEW ══════════════════════════════════════════ -->
@@ -707,7 +777,10 @@ var S = {
   w: 1, d: 0,
   chk: {},   // training/meal/habit check-offs: "w-d-si-ii" → true
   log: {},   // daily logs: "w-d" → {bw, bf, notes, whiskey, cal, prot}
-  wo: {},    // workout overrides: exerciseId → {sets, reps, weight, unit}
+  wo: {},    // legacy workout overrides (past days): exerciseId → {sets, reps, weight, unit}
+  lib: {},   // library state: libId → {active:optionIndex, opts:{optIndex:{sets,reps,weight,wOff}}}
+  restDays: {}, // "w-d" → true  (manually toggled rest/off day)
+  swap: {},  // week → dayIndex that swaps its rest with Wednesday
   // supplement state
   suppChk: {}, // "suppDay-itemId" → true
   suppStart: null,
@@ -806,6 +879,9 @@ function loadAll() {
       S.chk      = p.chk      || {};
       S.log      = p.log      || {};
       S.wo       = p.wo       || {};
+      S.lib      = p.lib      || {};
+      S.restDays = p.restDays || {};
+      S.swap     = p.swap     || {};
       S.suppChk  = p.suppChk  || {};
       S.suppStart= p.suppStart|| null;
       // If we found data under a different key, re-save under current key
@@ -1129,12 +1205,349 @@ var SUN_CARDIO=[
 ];
 var CORE_ITEMS=['Planks — 3 sets of 45–60 seconds, rest 30 sec between','Russian Twists — 3x12 per side','Leg Raises — 3x12','Mountain Climbers — 3x45 seconds','Kneeling Cable Ab Crunches — 3x12 @ 52.5lbs'];
 
+// ═══════════════════════════════════════════════════════
+//  WORKOUT LIBRARY — master catalog (single source of truth)
+//  Each exercise: {id, group, name, type, unit, note?, time?, options:[...]}
+//  Option (simple):  O(sets, reps, weight, {unit?, perSide?, note?})
+//  Option (cascade): C([st(reps,weight), ...], {perSide?, note?, unit?})
+//  Ordering within each exercise: 3-set family → 4-set family → cascading.
+//  "es"/per-side weights display as "lbs/side". A weight of 0 = "—" (set it).
+// ═══════════════════════════════════════════════════════
+function O(sets,reps,weight,extra){ var r={sets:sets,reps:reps,weight:weight}; if(extra){for(var k in extra) r[k]=extra[k];} return r; }
+function C(steps,extra){ var r={cascade:steps}; if(extra){for(var k in extra) r[k]=extra[k];} return r; }
+function st(reps,weight){ return {reps:reps,weight:weight}; }
+
+var LIB=[
+  // ── BICEPS ──────────────────────────────────────────
+  {id:'bi_bbcurl',group:'biceps',name:'Barbell Bicep Curls',type:'compound',unit:'lbs',options:[O(3,12,50),O(4,10,65)]},
+  {id:'bi_revbb',group:'biceps',name:'Reverse-Hand Barbell Curls',type:'compound',unit:'lbs',options:[O(3,8,40)]},
+  {id:'bi_underpd',group:'biceps',name:'Underhand Pulldowns',type:'machine',unit:'lbs',options:[O(3,10,165),O(4,10,140),O(4,8,160)]},
+  {id:'bi_hammer',group:'biceps',name:'Hammer Curls',type:'isolation',unit:'lbs',options:[O(3,12,30),O(4,12,35),O(4,10,37.5)]},
+  {id:'bi_hamtwist',group:'biceps',name:'Hammer Twist Curl',type:'isolation',unit:'lbs',options:[O(3,8,25),O(4,15,22.5)]},
+  {id:'bi_inclcurl',group:'biceps',name:'Incline DB Curl (palms out)',type:'isolation',unit:'lbs',options:[O(4,10,22.5),O(4,10,35),O(4,8,37.5),O(4,10,37.5,{note:'hammer'})]},
+  {id:'bi_bayes',group:'biceps',name:'Bayesian Cable Curl',type:'isolation',unit:'lbs',options:[O(4,8,30),O(4,15,17)]},
+  {id:'bi_flatpreach',group:'biceps',name:'Flat Bench Preacher Curl',type:'isolation',unit:'lbs',options:[O(3,10,0)]},
+  {id:'bi_preach',group:'biceps',name:'Regular Preacher Curl',type:'isolation',unit:'lbs',options:[O(3,10,55,{note:'cambered bar'}),O(3,10,60,{note:'straight bar'}),O(3,10,20,{note:'dumbbell'}),O(4,8,20,{perSide:true,note:'cambered bar'})]},
+  {id:'bi_seatbayes',group:'biceps',name:'Seated High Bayesian Cable Curl',type:'isolation',unit:'lbs',options:[O(4,10,17.5)]},
+  {id:'bi_headcurl',group:'biceps',name:'Head-Height Cable Curl (toward ear)',type:'isolation',unit:'lbs',options:[O(3,10,20)]},
+  // ── TRICEPS ─────────────────────────────────────────
+  {id:'tri_dips',group:'triceps',name:'Tricep Dips',type:'bodyweight',unit:'bodyweight',options:[O(4,12,0)]},
+  {id:'tri_cgbench',group:'triceps',name:'Close-Grip Bench Press',type:'compound',unit:'lbs',options:[O(3,15,105,{note:'EZ bar'}),O(4,8,145,{note:'barbell'}),O(4,15,95,{note:'EZ bar'}),O(1,20,60)]},
+  {id:'tri_ohext',group:'triceps',name:'Tricep Overhead Extension (Cable)',type:'isolation',unit:'lbs',options:[O(3,10,70,{perSide:true,note:'140 total'}),O(3,8,65,{perSide:true,note:'130 total'}),C([st(12,57.5),st(10,65),st(8,67.5),st(6,70)],{perSide:true})]},
+  {id:'tri_pushdown',group:'triceps',name:'Tricep Pushdown',type:'isolation',unit:'lbs',options:[O(3,15,57.5,{note:'115 total'}),O(4,8,55),O(4,10,50,{note:'100 total · slow'})]},
+  {id:'tri_skull',group:'triceps',name:'Skullcrushers',type:'isolation',unit:'lbs',options:[O(3,12,65)]},
+  {id:'tri_ohdb',group:'triceps',name:'Overhead DB Tricep Press',type:'isolation',unit:'lbs',options:[O(3,10,75),O(4,12,70)]},
+  {id:'tri_seatdip',group:'triceps',name:'Seated Dips Machine',type:'machine',unit:'lbs',options:[C([st(15,180),st(12,230),st(10,270),st(8,320)])]},
+  {id:'tri_crossover',group:'triceps',name:'Cable Crossovers (Triceps)',type:'isolation',unit:'lbs',options:[O(3,12,0)]},
+  // ── CHEST ───────────────────────────────────────────
+  {id:'ch_bench',group:'chest',name:'Barbell / DB Bench Press',type:'compound',unit:'lbs',options:[O(3,12,155,{note:'barbell'}),O(3,10,60,{note:'DBs'}),O(4,10,55,{note:'DBs'}),O(4,8,60,{note:'DBs'})]},
+  {id:'ch_incline',group:'chest',name:'Incline Bench Press',type:'compound',unit:'lbs',options:[O(3,15,70,{note:'barbell'}),O(4,10,50,{note:'DBs'}),O(4,8,55,{note:'DBs'})]},
+  {id:'ch_flyes',group:'chest',name:'Dumbbell Flyes',type:'isolation',unit:'lbs',options:[O(3,15,22.5)]},
+  {id:'ch_decline',group:'chest',name:'Decline Bench Press',type:'compound',unit:'lbs',options:[O(4,12,55),O(4,10,50),O(4,15,45),O(4,8,60)]},
+  {id:'ch_cableflye',group:'chest',name:'Cable Flyes',type:'isolation',unit:'lbs',options:[O(4,12,30,{note:'5° angle'}),O(4,10,33,{note:'5° angle'}),O(2,12,30,{note:'9° angle'}),O(2,10,33,{note:'9° angle'})]},
+  {id:'ch_pecdeck',group:'chest',name:'PecDeck',type:'machine',unit:'lbs',options:[O(4,12,100)]},
+  {id:'ch_seatpress',group:'chest',name:'Seated Chest Press',type:'machine',unit:'lbs',options:[O(4,12,55),O(4,10,70,{perSide:true}),O(4,8,80),C([st(12,55),st(12,65),st(12,70),st(12,75)])]},
+  {id:'ch_sidepress',group:'chest',name:'Seated Side Press',type:'machine',unit:'lbs',options:[O(3,10,60),O(4,10,55)]},
+  {id:'ch_hexpress',group:'chest',name:'Hex Dumbbell Press',type:'compound',unit:'lbs',options:[O(4,10,55,{note:'DBs'})]},
+  // ── SHOULDERS ───────────────────────────────────────
+  {id:'sh_ohp',group:'shoulders',name:'Overhead Shoulder Press',type:'compound',unit:'lbs',options:[O(3,12,75,{note:'barbell'}),O(3,10,80,{note:'barbell'}),O(3,8,60,{note:'DBs'}),O(4,10,50,{note:'DBs'})]},
+  {id:'sh_lat',group:'shoulders',name:'Lateral Raises',type:'isolation',unit:'lbs',options:[O(3,12,12)]},
+  {id:'sh_inclat',group:'shoulders',name:'Incline Side-Leaning Lateral Raise',type:'isolation',unit:'lbs',options:[O(3,12,15),O(3,10,17.5)]},
+  {id:'sh_front',group:'shoulders',name:'Front Raises',type:'isolation',unit:'lbs',options:[O(3,12,12,{note:'DBs'})]},
+  {id:'sh_frontrom',group:'shoulders',name:'Front Raise — Super ROM',type:'isolation',unit:'lbs',options:[O(4,10,45),O(4,10,17,{note:'cable arm machine'})]},
+  {id:'sh_upright',group:'shoulders',name:'Upright Machine Shoulder Press',type:'machine',unit:'lbs',options:[O(3,10,70),O(4,8,75)]},
+  // ── BACK ────────────────────────────────────────────
+  {id:'bk_dead',group:'back',name:'Deadlifts',type:'compound',unit:'lbs',note:'STARTS ON THE GROUND — pull the weight up off the floor each rep.',options:[O(3,8,70,{perSide:true,note:'175 total'}),O(3,10,135)]},
+  {id:'bk_pullup',group:'back',name:'Pull-Ups (assisted)',type:'compound',unit:'lbs assist',options:[O(3,12,30)]},
+  {id:'bk_bor',group:'back',name:'Bent-Over Rows',type:'compound',unit:'lbs',options:[O(3,10,55,{note:'DBs'}),O(3,8,65,{note:'DBs'})]},
+  {id:'bk_shrug',group:'back',name:'Shrugs',type:'compound',unit:'lbs',options:[C([st(12,140),st(10,180),st(8,230),st(6,270)])]},
+  {id:'bk_seatrow',group:'back',name:'Seated Row Machine',type:'machine',unit:'lbs',options:[O(3,10,90,{perSide:true}),O(3,8,115,{perSide:true})]},
+  {id:'bk_facepull',group:'back',name:'Face Pulls',type:'isolation',unit:'lbs',options:[O(3,12,0)]},
+  {id:'bk_cablerow',group:'back',name:'Seated Cable Rows',type:'machine',unit:'lbs',options:[O(4,12,160),O(4,10,170),C([st(12,160),st(10,170),st(8,180)])]},
+  {id:'bk_lowrow',group:'back',name:'Low Rows Machine',type:'machine',unit:'lbs',options:[O(4,10,70,{perSide:true,note:'vert handle'}),O(4,10,65,{perSide:true,note:'horz handle'}),O(3,8,90,{note:'vert · single hand'})]},
+  {id:'bk_seatlat',group:'back',name:'Seated Lat Pulldown Machine',type:'machine',unit:'lbs',options:[O(4,10,90,{perSide:true}),O(3,8,100,{perSide:true})]},
+  {id:'bk_backfly',group:'back',name:'Back Flyes Machine',type:'isolation',unit:'lbs',options:[O(4,10,70)]},
+  {id:'bk_lawn',group:'back',name:'Lawnmower Pulls',type:'compound',unit:'lbs',options:[O(3,8,70)]},
+  {id:'bk_latpd',group:'back',name:'Lat Pulldown Machine',type:'machine',unit:'lbs',options:[O(3,10,145),C([st(12,150),st(10,160),st(8,170),st(6,180)])]},
+  {id:'bk_crossbody',group:'back',name:'Crossbody Lat Pulls (kneeling)',type:'isolation',unit:'lbs',options:[O(3,10,47,{perSide:true})]},
+  {id:'bk_guillotine',group:'back',name:'Cable Crossovers (Guillotine)',type:'isolation',unit:'lbs',options:[O(4,8,17)]},
+  // ── LEGS ────────────────────────────────────────────
+  {id:'lg_squat',group:'legs',name:'Squats (Barbell)',type:'compound',unit:'lbs',options:[O(3,12,65),C([st(15,45),st(12,55),st(10,65),st(10,65),st(12,55),st(15,45)])]},
+  {id:'lg_rdl',group:'legs',name:'RDLs',type:'compound',unit:'lbs',note:'STARTS STANDING holding the weight — hinge/bend DOWN, then drive back up.',options:[O(4,10,155)]},
+  {id:'lg_windowsq',group:'legs',name:'Window Squat Machine',type:'machine',unit:'lbs',options:[O(3,12,220),C([st(15,140),st(12,160),st(10,180),st(8,200),st(6,220),st(4,240)])]},
+  {id:'lg_splitsq',group:'legs',name:'Window Machine Split Squat',type:'machine',unit:'lbs',options:[O(3,8,120)]},
+  {id:'lg_lunge',group:'legs',name:'Lunges (per leg)',type:'compound',unit:'lbs',options:[O(3,12,0)]},
+  {id:'lg_legpress',group:'legs',name:'Leg Press',type:'machine',unit:'lbs',options:[O(3,12,260),C([st(10,220),st(15,240),st(15,260),st(10,280)])]},
+  {id:'lg_squatpress',group:'legs',name:'Squat Press',type:'machine',unit:'lbs',options:[O(4,15,270),O(4,10,360),O(3,10,450),C([st(10,140),st(10,180),st(10,220),st(10,280),st(10,330)])]},
+  {id:'lg_calf',group:'legs',name:'Calf Raises',type:'isolation',unit:'lbs',options:[O(3,20,150,{note:'seated'}),O(4,15,70,{note:'single-leg seated'}),O(3,30,220,{note:'standing'})]},
+  {id:'lg_hampush',group:'legs',name:'Hamstring Pushback Machine',type:'machine',unit:'lbs',options:[O(3,12,185)]},
+  {id:'lg_hamcurl',group:'legs',name:'Hamstring Curls',type:'machine',unit:'lbs',options:[O(4,10,60,{note:'120 total'}),O(3,10,65,{note:'digital machine'}),C([st(15,140),st(12,160),st(10,160),st(8,180),st(6,200)])]},
+  {id:'lg_slhamcurl',group:'legs',name:'Single-Leg Hamstring Curl',type:'machine',unit:'lbs',options:[O(3,10,60,{perSide:true}),O(3,8,65,{perSide:true}),O(4,10,55,{perSide:true})]},
+  {id:'lg_quadcurl',group:'legs',name:'Quad Curl (non-rocking)',type:'machine',unit:'lbs',options:[O(4,10,175),O(4,12,70,{note:'140 total'}),O(3,10,85,{note:'digital machine'}),C([st(12,145),st(10,150),st(8,160),st(6,165),st(4,170)])]},
+  {id:'lg_quadrock',group:'legs',name:'Quad Curl (Rocking Machine)',type:'machine',unit:'lbs',options:[O(4,12,125)]},
+  {id:'lg_bulg',group:'legs',name:'Bulgarian Split Squat',type:'compound',unit:'lbs',options:[O(3,10,80,{note:'DB · or 36kg KB'})]},
+  {id:'lg_walklunge',group:'legs',name:'Walking Lunges',type:'compound',unit:'kg KB',options:[O(3,12,24,{perSide:true})]},
+  {id:'lg_hipthrust',group:'legs',name:'Hip Thrust Machine',type:'machine',unit:'lbs',options:[O(3,15,140),C([st(12,45),st(10,70),st(8,90)],{perSide:true})]},
+  {id:'lg_abd',group:'legs',name:'Hip Abduction',type:'machine',unit:'lbs',options:[O(4,12,145),C([st(15,115),st(12,120),st(10,130),st(8,140)])]},
+  {id:'lg_add',group:'legs',name:'Hip Adduction',type:'machine',unit:'lbs',options:[O(4,12,145),C([st(15,145),st(12,150),st(10,155),st(8,160)])]},
+  {id:'lg_jumps',group:'legs',name:'Seated Leg Press Jumps',type:'machine',unit:'lbs',options:[O(4,15,50)]},
+  // ── CORE / CARDIO ───────────────────────────────────
+  {id:'co_plank',group:'core',name:'Planks',type:'bodyweight',unit:'sec',time:true,options:[O(3,45,0)]},
+  {id:'co_russian',group:'core',name:'Russian Twists (per side)',type:'bodyweight',unit:'bodyweight',options:[O(3,12,0)]},
+  {id:'co_legraise',group:'core',name:'Leg Raises',type:'bodyweight',unit:'bodyweight',options:[O(3,12,0)]},
+  {id:'co_mtn',group:'core',name:'Mountain Climbers',type:'bodyweight',unit:'sec',time:true,options:[O(3,45,0)]},
+  {id:'co_abcrunch',group:'core',name:'Kneeling Cable Ab Crunches',type:'isolation',unit:'lbs',options:[O(8,12,52.5)]}
+];
+
+var LIB_GROUPS=['biceps','triceps','chest','shoulders','back','legs','core'];
+var LIB_GROUP_LABEL={biceps:'Biceps',triceps:'Triceps',chest:'Chest',shoulders:'Shoulders',back:'Back',legs:'Legs',core:'Core / Cardio'};
+var LIB_INDEX={}; LIB.forEach(function(ex){ LIB_INDEX[ex.id]=ex; });
+
+// Stable, deterministic shuffle so the daily-log rotation order never changes
+// between page loads (history stays reproducible).
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var LIB_BY_GROUP={}, LIB_ORDER={};
+LIB_GROUPS.forEach(function(g){ LIB_BY_GROUP[g]=LIB.filter(function(e){return e.group===g;}); });
+(function(){
+  var seed=20260504;
+  LIB_GROUPS.forEach(function(g){
+    var arr=LIB_BY_GROUP[g].slice(), rnd=mulberry32(seed+g.length*7919+g.charCodeAt(0));
+    for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var t=arr[i];arr[i]=arr[j];arr[j]=t; }
+    LIB_ORDER[g]=arr;
+  });
+})();
+
+// ─── Library state + active-option resolution ───────────────────────────────
+function libState(id){ if(!S.lib[id]) S.lib[id]={active:0,opts:{}}; if(!S.lib[id].opts) S.lib[id].opts={}; return S.lib[id]; }
+function libActiveIndex(ex){ var st=libState(ex.id); var i=st.active||0; if(i>=ex.options.length) i=0; return i; }
+// Resolve the active option of an exercise, applying any user edits.
+function libActiveOpt(ex){
+  var i=libActiveIndex(ex), base=ex.options[i], ov=(S.lib[ex.id]&&S.lib[ex.id].opts&&S.lib[ex.id].opts[i])||{};
+  if(base.cascade){
+    var wOff=ov.wOff||0;
+    return {cascade:base.cascade.map(function(s){return {reps:s.reps,weight:Math.max(0,s.weight+wOff)};}),
+            unit:base.unit||ex.unit, perSide:base.perSide, note:base.note, isCascade:true, idx:i, wOff:wOff};
+  }
+  return {sets:('sets' in ov)?ov.sets:base.sets, reps:('reps' in ov)?ov.reps:base.reps,
+          weight:('weight' in ov)?ov.weight:base.weight, unit:base.unit||ex.unit,
+          perSide:base.perSide, note:base.note, idx:i};
+}
+function libUnitLabel(opt,ex){
+  var u=opt.unit||ex.unit||'lbs';
+  if(opt.perSide) return u.replace('lbs','lbs/side').replace('kg','kg/side');
+  return u;
+}
+// Total working reps of an exercise's active option (for the trim-when-heavy rule)
+function libExReps(ex){
+  var o=libActiveOpt(ex);
+  if(o.isCascade) return o.cascade.reduce(function(s,x){return s+x.reps;},0);
+  return (o.sets||0)*(o.reps||0);
+}
+// Format an exercise's active option as a daily-log / library line
+function libExStr(ex){
+  var o=libActiveOpt(ex);
+  if(o.isCascade){
+    var parts=o.cascade.map(function(s){return s.reps+'×'+s.weight;}).join(' · ');
+    return ex.name+' — '+o.cascade.length+' sets: '+parts+' '+libUnitLabel(o,ex)+(o.note?' ('+o.note+')':'');
+  }
+  if(ex.type==='bodyweight'){
+    if(ex.time) return ex.name+' — '+o.sets+' sets × '+o.reps+'s';
+    return ex.name+' — '+o.sets+'×'+o.reps+' bodyweight';
+  }
+  var wStr=(o.weight===0||o.weight==null)?'—':o.weight;
+  return ex.name+' — '+o.sets+'×'+o.reps+' @ '+wStr+' '+libUnitLabel(o,ex)+(o.note?' ('+o.note+')':'');
+}
+
+// ─── Day → muscle-group plan, deterministic rotation cursor ──────────────────
+function dayPlanFor(d){
+  if(d===0) return [{g:'chest',n:3,label:'CHEST'},{g:'back',n:3,label:'BACK'}];
+  if(d===1) return [{g:'legs',n:5,label:'LEGS — QUAD DOMINANT'}];
+  if(d===3) return [{g:'chest',n:2,label:'CHEST'},{g:'shoulders',n:2,label:'SHOULDERS'},{g:'triceps',n:2,label:'TRICEPS'}];
+  if(d===4) return [{g:'back',n:3,label:'BACK'},{g:'biceps',n:2,label:'BICEPS'}];
+  if(d===5) return [{g:'legs',n:4,label:'LEGS — HAMSTRING & GLUTE DOMINANT'},{g:'biceps',n:1,label:'ARMS FINISHER — 15–20 min'},{g:'triceps',n:1,label:'ARMS FINISHER — 15–20 min'}];
+  return [];
+}
+// How many exercises of `group` have been consumed before day (w,d) — gives the
+// rotation start index, so over the weeks every exercise eventually surfaces.
+function libStart(group,w,d){
+  var target=(w-1)*7+d, total=0;
+  for(var o=0;o<target;o++){
+    dayPlanFor(o%7).forEach(function(p){ if(p.g===group) total+=p.n; });
+  }
+  return total;
+}
+// The exercises (grouped) drawn for a given day, after the trim-when-heavy rule.
+function libPicksForDay(w,d){
+  var ed=effDay(w,d), plan=dayPlanFor(ed), groups=[];
+  plan.forEach(function(p){
+    var order=LIB_ORDER[p.g], len=order.length, start=libStart(p.g,w,d), exs=[];
+    for(var i=0;i<p.n;i++){ exs.push(order[(start+i)%len]); }
+    var g=null; for(var k=0;k<groups.length;k++){ if(groups[k].label===p.label){ g=groups[k]; break; } }
+    if(g){ g.exs=g.exs.concat(exs); } else { groups.push({label:p.label,exs:exs}); }
+  });
+  // Trim one exercise on high-volume days (you tend to run out of time)
+  var totalReps=0; groups.forEach(function(g){ g.exs.forEach(function(ex){ totalReps+=libExReps(ex); }); });
+  if(totalReps>300){
+    for(var j=groups.length-1;j>=0;j--){ if(groups[j].exs.length>1){ groups[j].exs.pop(); break; } }
+  }
+  return groups;
+}
+
+// ─── Rest-day toggle & Wednesday swap ───────────────────────────────────────
+function effDay(w,d){
+  var sw=S.swap[w];
+  if(sw==null) return d;
+  if(d===2) return sw;   // Wednesday inherits the swapped day's workout
+  if(d===sw) return 2;   // the swapped day becomes the rest day
+  return d;
+}
+var WK_SEC_PREFIX=['CHEST','BACK','LEGS','SHOULDERS','TRICEPS','BICEPS','ARMS FINISHER','FASTED CARDIO','POST-WORKOUT'];
+function isWkSecTitle(t){ for(var i=0;i<WK_SEC_PREFIX.length;i++){ if(t.indexOf(WK_SEC_PREFIX[i])===0) return true; } return false; }
+function dayHasWorkout(day){ return day.sections.some(function(s){ return isWkSecTitle(s.t); }); }
+function todayOrdinal(){ var t=new Date(),s=new Date(START); t.setHours(0,0,0,0); s.setHours(0,0,0,0); return Math.floor((t-s)/86400000); }
+// Days strictly before today keep the original (frozen) content so completed
+// history is preserved exactly. Today + future use the library rotation.
+function isPast(w,d){ return ((w-1)*7+d) < todayOrdinal(); }
+
+function overwriteWorkoutSections(day,w,d){
+  var picks=libPicksForDay(w,d), byLabel={};
+  picks.forEach(function(p){ byLabel[p.label]=p.exs.map(function(ex){ return libExStr(ex); }); });
+  day.sections.forEach(function(sec){ if(byLabel[sec.t]) sec.items=byLabel[sec.t]; });
+}
+
+// New master day builder: applies swap, rest-toggle, and library rotation.
+function buildDay(w,d){
+  var rk=w+'-'+d, ed=effDay(w,d);
+  // Manually toggled rest/off day: strip workout sections, keep all other tasks.
+  if(S.restDays[rk]){
+    var rday=buildDayBase(w, ed===2?2:ed);
+    rday.sections=rday.sections.filter(function(s){ return !isWkSecTitle(s.t); });
+    rday.toggledRest=true;
+    return rday;
+  }
+  if(isPast(w,d)) return buildDayBase(w,ed);   // frozen history
+  var day=buildDayBase(w,ed);
+  if(ed!==2 && ed!==6) overwriteWorkoutSections(day,w,d);
+  return day;
+}
+
+// ─── Library tab render + interactions ──────────────────────────────────────
+function renderLibrary(){
+  var html='<div class="lib-intro">Every workout, every set/rep/weight option. Tap an option to make it <b>active</b> — the active option is what flows into your Daily Log. Use the +/− steppers to fine-tune any option; changes save instantly and reflect everywhere.</div>';
+  LIB_GROUPS.forEach(function(g){
+    html+='<div class="lib-group"><div class="lib-group-hd"><span>'+LIB_GROUP_LABEL[g]+'</span></div>';
+    LIB_BY_GROUP[g].forEach(function(ex){
+      var ai=libActiveIndex(ex);
+      html+='<div class="lib-card">'+
+        '<div class="lib-card-hd"><span class="lib-name">'+ex.name+'</span><span class="lib-tag">'+ex.type+'</span></div>'+
+        (ex.note?'<div class="lib-note">▸ <span><b>Form:</b> '+ex.note+'</span></div>':'');
+      ex.options.forEach(function(opt,oi){
+        var active=(oi===ai);
+        html+='<div class="lib-opt'+(active?' active':'')+'" onclick="libActivate(\''+ex.id+'\','+oi+')">'+
+          '<div class="lib-opt-top">'+
+            '<div class="lib-radio"></div>'+
+            '<div class="lib-opt-txt">'+libOptStr(ex,oi)+'</div>'+
+            (active?'<span class="lib-active-badge">Active</span>':'')+
+          '</div>'+
+          libSteppers(ex,oi)+
+        '</div>';
+      });
+      html+='</div>';
+    });
+    html+='</div>';
+  });
+  document.getElementById('libview').innerHTML=html;
+}
+// Format a specific option (not just the active one) for the library list
+function libOptStr(ex,oi){
+  var base=ex.options[oi], ov=(S.lib[ex.id]&&S.lib[ex.id].opts&&S.lib[ex.id].opts[oi])||{};
+  if(base.cascade){
+    var wOff=ov.wOff||0;
+    var parts=base.cascade.map(function(s){return s.reps+'×'+Math.max(0,s.weight+wOff);}).join(' · ');
+    var u=base.unit||ex.unit; if(base.perSide) u=u.replace('lbs','lbs/side').replace('kg','kg/side');
+    return '<b>Cascade</b> '+base.cascade.length+' sets: '+parts+' '+u+(base.note?' <span class="lib-opt-note">('+base.note+')</span>':'');
+  }
+  var sets=('sets' in ov)?ov.sets:base.sets, reps=('reps' in ov)?ov.reps:base.reps, weight=('weight' in ov)?ov.weight:base.weight;
+  var u=base.unit||ex.unit; if(base.perSide) u=u.replace('lbs','lbs/side').replace('kg','kg/side');
+  if(ex.type==='bodyweight'){ return sets+' sets × '+reps+(ex.time?'s':' reps'); }
+  var wStr=(weight===0||weight==null)?'—':weight;
+  return sets+' × '+reps+' @ '+wStr+' '+u+(base.note?' <span class="lib-opt-note">('+base.note+')</span>':'');
+}
+function libSteppers(ex,oi){
+  var base=ex.options[oi];
+  var id=ex.id, p="'"+id+"',"+oi;
+  if(base.cascade){
+    return '<div class="lib-steppers" onclick="event.stopPropagation()">'+
+      '<div class="lib-stp"><div class="lib-stp-lbl">All Weights</div><div class="lib-stp-ctrl">'+
+        '<button class="ef-btn" onclick="libAdj('+p+',\'wOff\',-5)">−</button>'+
+        '<input class="ef-input" type="number" id="ls-wOff-'+id+'-'+oi+'" value="'+((S.lib[id]&&S.lib[id].opts&&S.lib[id].opts[oi]&&S.lib[id].opts[oi].wOff)||0)+'" step="5" onchange="libSetField('+p+',\'wOff\',this.value)"></div></div>'+
+      '<div class="lib-stp-lbl" style="align-self:center;">offset applied to every step</div>'+
+    '</div>';
+  }
+  var ov=(S.lib[id]&&S.lib[id].opts&&S.lib[id].opts[oi])||{};
+  var sets=('sets' in ov)?ov.sets:base.sets, reps=('reps' in ov)?ov.reps:base.reps, weight=('weight' in ov)?ov.weight:base.weight;
+  var isBw=(ex.type==='bodyweight');
+  var h='<div class="lib-steppers" onclick="event.stopPropagation()">';
+  h+=libStp(id,oi,'sets','Sets',sets,1);
+  h+=libStp(id,oi,'reps',ex.time?'Secs':'Reps',reps,1);
+  if(!isBw) h+=libStp(id,oi,'weight','Weight',weight,2.5);
+  h+='</div>';
+  return h;
+}
+function libStp(id,oi,field,label,val,step){
+  var p="'"+id+"',"+oi;
+  return '<div class="lib-stp"><div class="lib-stp-lbl">'+label+'</div><div class="lib-stp-ctrl">'+
+    '<button class="ef-btn" onclick="libAdj('+p+',\''+field+'\',-'+step+')">−</button>'+
+    '<input class="ef-input" type="number" id="ls-'+field+'-'+id+'-'+oi+'" value="'+val+'" step="'+step+'" onchange="libSetField('+p+',\''+field+'\',this.value)">'+
+    '<button class="ef-btn" onclick="libAdj('+p+',\''+field+'\','+step+')">+</button></div></div>';
+}
+function libActivate(id,oi){
+  libState(id).active=oi;
+  saveAll();
+  renderLibrary();
+  renderDay();
+}
+function libEnsureOpt(id,oi){ var st=libState(id); if(!st.opts[oi]) st.opts[oi]={}; return st.opts[oi]; }
+function libClampField(field,val){
+  if(field==='sets') return Math.max(1,Math.min(12,Math.round(val)));
+  if(field==='reps') return Math.max(1,Math.min(99,Math.round(val)));
+  return Math.round(val*4)/4; // weight / wOff
+}
+function libAdj(id,oi,field,delta){
+  var base=LIB_INDEX[id].options[oi], ov=libEnsureOpt(id,oi);
+  var cur;
+  if(field==='wOff') cur=ov.wOff||0;
+  else cur=(field in ov)?ov[field]:base[field];
+  var val=libClampField(field, parseFloat(cur)+delta);
+  if(field==='weight') val=Math.max(0,val);
+  ov[field]=val;
+  saveAll();
+  var inp=document.getElementById('ls-'+field+'-'+id+'-'+oi); if(inp) inp.value=val;
+  renderLibrary(); renderDay();
+}
+function libSetField(id,oi,field,raw){
+  var val=parseFloat(raw); if(isNaN(val)) return;
+  var ov=libEnsureOpt(id,oi);
+  ov[field]=libClampField(field, val);
+  if(field==='weight') ov[field]=Math.max(0,ov[field]);
+  saveAll(); renderLibrary(); renderDay();
+}
+
 // ─── Progressive overload helpers ───────────────────────────────────────────
 // Get the user-edited version of an exercise, or the base default
 function getEx(ex, w) {
   var over = S.wo && S.wo[ex.id];
-  var base = over ? over : ex;
-  return base;
+  if (!over) return ex;
+  // Merge override onto the base exercise so name/type/unit are never lost
+  return {
+    id:     ex.id,
+    name:   ex.name,
+    type:   ex.type,
+    sets:   over.sets   != null ? over.sets   : ex.sets,
+    reps:   over.reps   != null ? over.reps   : ex.reps,
+    weight: over.weight != null ? over.weight : ex.weight,
+    unit:   over.unit   != null ? over.unit   : ex.unit
+  };
 }
 // Calculate suggested weight for week w+1 (shown as "next week target")
 function suggestedWeight(ex, w) {
@@ -1153,15 +1566,22 @@ function exStr(ex, w) {
 function exArrToItems(exArr, w) {
   return exArr.map(function(ex){ return exStr(ex, w); });
 }
-// Get all exercise arrays for a given day (for edit mode and overload summary)
+// Get all exercise arrays for a given day (for edit mode and overload summary).
+// Present/future days draw from the live library; past days use the frozen
+// legacy arrays so completed history is preserved exactly.
 function getDayExArrays(w, d) {
+  var ed = effDay(w, d);
+  if (!isPast(w, d)) {
+    // Library-backed day: return the actual picked library exercises
+    return libPicksForDay(w, d).map(function(p){ return {label:p.label, arr:p.exs, lib:true}; });
+  }
   var r = (w-1)%3;
   var result = [];
-  if (d===0) result = [{label:'CHEST',arr:CHEST_R[r]},{label:'BACK',arr:BACK_R[r]}];
-  else if (d===1) result = [{label:'LEGS — QUAD DOMINANT',arr:QUAD_R[r]}];
-  else if (d===3) result = [{label:'CHEST',arr:PUSH_CHEST_R[r]},{label:'SHOULDERS',arr:PUSH_SHOULDER_R[r]},{label:'TRICEPS',arr:PUSH_TRI_R[r]}];
-  else if (d===4) result = [{label:'BACK',arr:PULL_BACK_R[r]},{label:'BICEPS',arr:PULL_BIC_R[r]}];
-  else if (d===5) result = [{label:'LEGS — HAMSTRING & GLUTE DOMINANT',arr:SAT_LEG_R[r]},{label:'ARMS FINISHER',arr:SAT_ARM_R[r]}];
+  if (ed===0) result = [{label:'CHEST',arr:CHEST_R[r]},{label:'BACK',arr:BACK_R[r]}];
+  else if (ed===1) result = [{label:'LEGS — QUAD DOMINANT',arr:QUAD_R[r]}];
+  else if (ed===3) result = [{label:'CHEST',arr:PUSH_CHEST_R[r]},{label:'SHOULDERS',arr:PUSH_SHOULDER_R[r]},{label:'TRICEPS',arr:PUSH_TRI_R[r]}];
+  else if (ed===4) result = [{label:'BACK',arr:PULL_BACK_R[r]},{label:'BICEPS',arr:PULL_BIC_R[r]}];
+  else if (ed===5) result = [{label:'LEGS — HAMSTRING & GLUTE DOMINANT',arr:SAT_LEG_R[r]},{label:'ARMS FINISHER',arr:SAT_ARM_R[r]}];
   return result;
 }
 
@@ -1324,7 +1744,7 @@ function buildSun(w,m,ci){
   ]};
 }
 
-function buildDay(w,d){
+function buildDayBase(w,d){
   var m=MACROS[phaseKey(w)];
   var r=(w-1)%3;
   var ci=w<=2?0:w<=4?1:2;
@@ -1464,16 +1884,19 @@ function renderDay(){
   var html='<div class="dh">'+
     '<div class="dh-eyebrow" style="color:'+pc+'">'+phaseName(S.w)+' · WEEK '+S.w+' · '+dayDate(S.w,S.d)+'</div>'+
     '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
-      '<div class="dh-title" style="color:'+tc+'">'+day.label+'</div>'+
-      (dtype(S.d)!=='rest'&&dtype(S.d)!=='cardio' ? '<button class="edit-btn" onclick="openEditDrawer()">✎ Edit Workout</button>' : '')+
+      '<div class="dh-title" style="color:'+tc+'">'+day.label+(day.toggledRest?' · <span style="color:var(--rest)">OFF DAY</span>':'')+'</div>'+
+      (dayHasWorkout(day) ? '<button class="edit-btn" onclick="openEditDrawer()">✎ Edit Workout</button>' : '')+
     '</div>'+
     '<div class="dh-date">'+done+' / '+tot+' items complete</div>'+
     '<div class="dh-pbar"><div class="dh-pfill" style="width:'+pr+'%;background:'+pc+'"></div></div>'+
     '<div class="dh-pmeta"><span>'+done+' / '+tot+' tasks</span><span>'+pr+'%</span></div>'+
+    renderDayControls(S.w,S.d)+
   '</div>';
 
-  // Progressive overload summary — only on gym days
-  if(dtype(S.d)!=='rest' && dtype(S.d)!=='cardio') {
+  if(day.toggledRest) html += '<div class="rest-banner">☾ Marked as a REST / OFF day — workouts are hidden and excluded from your accountability totals. All other tasks still count.</div>';
+
+  // Progressive overload summary — only on frozen (past) gym days
+  if(isPast(S.w,S.d) && dayHasWorkout(day)) {
     var exArrays = getDayExArrays(S.w, S.d);
     if(exArrays.length > 0) {
       html += '<div class="overload-summary"><div class="overload-head" onclick="var b=this.nextElementSibling;b.classList.toggle(\'collapsed\');this.querySelector(\'.ol-toggle\').textContent=b.classList.contains(\'collapsed\')?\'TAP TO EXPAND\':\'TAP TO COLLAPSE\'">'+
@@ -1640,6 +2063,40 @@ function navTo(w,d){
   saveAll();
   renderAll();
   document.getElementById('main').scrollTop=0;
+}
+
+// ─── Rest-day toggle & Wednesday swap controls ──────────────────────────────
+function renderDayControls(w,d){
+  var rk=w+'-'+d, isRest=!!S.restDays[rk];
+  var h='<div class="day-ctrls">'+
+    '<button class="day-ctrl-btn'+(isRest?' on':'')+'" onclick="toggleRestDay('+w+','+d+')">'+
+      (isRest?'✓ Off Day — tap to restore workout':'☾ Mark as Rest / Off Day')+'</button>'+
+  '</div>';
+  if(d===2){
+    var cur=S.swap[w];
+    h+='<div class="swap-row"><span class="swap-lbl">Move this week\'s rest to:</span>';
+    [[0,'Mon'],[1,'Tue'],[3,'Thu'],[4,'Fri'],[5,'Sat']].forEach(function(x){
+      h+='<button class="swap-pick'+(cur===x[0]?' sel':'')+'" onclick="setSwap('+w+','+x[0]+')">'+x[1]+'</button>';
+    });
+    h+='<button class="swap-pick'+(cur==null?' sel':'')+'" onclick="setSwap('+w+',null)">None</button></div>';
+  } else if(S.swap[w]===d){
+    h+='<div class="swap-row"><span class="swap-lbl" style="color:var(--rest);">↔ Swapped to REST this week — its workout moved to Wednesday.</span>'+
+       '<button class="swap-pick" onclick="setSwap('+w+',null)">Undo swap</button></div>';
+  }
+  return h;
+}
+function toggleRestDay(w,d){
+  var rk=w+'-'+d;
+  if(S.restDays[rk]) delete S.restDays[rk]; else S.restDays[rk]=true;
+  saveAll();
+  renderGrid();
+  renderDay();
+}
+function setSwap(w,val){
+  if(val==null||val==='null') delete S.swap[w]; else S.swap[w]=val;
+  saveAll();
+  renderGrid();
+  renderDay();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1837,6 +2294,7 @@ function closeEditDrawer() {
 }
 
 function saveEditDrawer() {
+  // Library days save live as you edit; legacy days commit the temp overrides.
   S.wo = JSON.parse(JSON.stringify(_editTemp));
   saveAll();
   closeEditDrawer();
@@ -1845,67 +2303,98 @@ function saveEditDrawer() {
 }
 
 function resetEditDrawer() {
-  if(!confirm('Reset all exercises for this day to default weights?')) return;
+  if(!confirm('Reset this day\'s exercises to their default options?')) return;
   var exArrays = getDayExArrays(S.w, S.d);
   exArrays.forEach(function(g){
-    g.arr.forEach(function(ex){ delete _editTemp[ex.id]; delete S.wo[ex.id]; });
+    g.arr.forEach(function(ex){
+      if (g.lib) { if (S.lib[ex.id] && S.lib[ex.id].opts) S.lib[ex.id].opts={}; }
+      else { delete _editTemp[ex.id]; delete S.wo[ex.id]; }
+    });
   });
   saveAll();
   renderEditDrawer();
   renderDay();
+  if (document.getElementById('panel-workouts').classList.contains('active')) renderLibrary();
   showToast('RESET TO DEFAULTS');
 }
 
 function renderEditDrawer() {
   var exArrays = getDayExArrays(S.w, S.d);
-  var r = (S.w-1)%3;
   var html = '';
 
   exArrays.forEach(function(group) {
     html += '<div class="edit-group"><div class="edit-group-label">'+group.label+'</div>';
     group.arr.forEach(function(ex) {
-      var cur = _editTemp[ex.id] ? _editTemp[ex.id] : {sets:ex.sets,reps:ex.reps,weight:ex.weight,unit:ex.unit};
-      var sug = suggestedWeight(ex, S.w);
-      var isBodyweight = ex.unit === 'bodyweight';
-      html += '<div class="edit-row">'+
-        '<div class="edit-row-name">'+ex.name+'</div>'+
-        '<div class="edit-fields">'+
-          // SETS
-          '<div class="edit-field">'+
-            '<div class="edit-field-label">Sets</div>'+
-            '<div class="edit-field-ctrl">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',-1)">−</button>'+
-              '<input class="ef-input" type="number" id="ef-sets-'+ex.id+'" value="'+cur.sets+'" min="1" max="10" onchange="editSet(\''+ex.id+'\',\'sets\',this.value)">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',1)">+</button>'+
-            '</div>'+
-          '</div>'+
-          // REPS
-          '<div class="edit-field">'+
-            '<div class="edit-field-label">Reps</div>'+
-            '<div class="edit-field-ctrl">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',-1)">−</button>'+
-              '<input class="ef-input" type="number" id="ef-reps-'+ex.id+'" value="'+cur.reps+'" min="1" max="50" onchange="editSet(\''+ex.id+'\',\'reps\',this.value)">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',1)">+</button>'+
-            '</div>'+
-          '</div>'+
-          // WEIGHT (skip if bodyweight)
-          (!isBodyweight ?
-          '<div class="edit-field">'+
-            '<div class="edit-field-label">Weight ('+cur.unit+')</div>'+
-            '<div class="edit-field-ctrl">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',-2.5)">−</button>'+
-              '<input class="ef-input" type="number" id="ef-weight-'+ex.id+'" value="'+cur.weight+'" min="0" step="2.5" onchange="editSet(\''+ex.id+'\',\'weight\',this.value)">'+
-              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',2.5)">+</button>'+
-            '</div>'+
-            (sug !== null ? '<div class="edit-suggest">▸ Wk '+(S.w+1)+' target: '+sug+' '+cur.unit+'</div>' : '')+
-          '</div>' : '<div class="edit-field"><div class="edit-field-label">Weight</div><div style="font-size:11px;color:var(--ink-mute);padding-top:6px;">Bodyweight</div></div>')+
-        '</div>'+
-      '</div>';
+      html += group.lib ? editRowLib(ex) : editRowLegacy(ex);
     });
     html += '</div>';
   });
 
   document.getElementById('edit-drawer-body').innerHTML = html;
+}
+
+// Library-backed edit row: edits the exercise's ACTIVE option live (single
+// source of truth — reflects in the Workouts tab and everywhere else).
+function editRowLib(ex) {
+  var oi = libActiveIndex(ex), base = ex.options[oi], o = libActiveOpt(ex);
+  var html = '<div class="edit-row">'+
+    '<div class="edit-row-name">'+ex.name+
+      '<span style="font-size:9px;color:var(--ink-mute);letter-spacing:.1em;"> · active option '+(oi+1)+'/'+ex.options.length+'</span></div>'+
+    (ex.note?'<div style="font-size:10px;color:var(--accent);margin:2px 0 6px;">▸ '+ex.note+'</div>':'');
+  if (o.isCascade) {
+    var parts=o.cascade.map(function(s){return s.reps+'×'+s.weight;}).join(' · ');
+    html += '<div style="font-size:11px;color:var(--ink);margin-bottom:6px;">'+parts+' '+libUnitLabel(o,ex)+'</div>'+
+      '<div class="edit-fields"><div class="edit-field"><div class="edit-field-label">All Weights ±</div>'+
+        '<div class="edit-field-ctrl">'+
+          '<button class="ef-btn" onclick="edLibAdj(\''+ex.id+'\','+oi+',\'wOff\',-5)">−</button>'+
+          '<input class="ef-input" type="number" value="'+(o.wOff||0)+'" step="5" onchange="edLibSet(\''+ex.id+'\','+oi+',\'wOff\',this.value)">'+
+          '<button class="ef-btn" onclick="edLibAdj(\''+ex.id+'\','+oi+',\'wOff\',5)">+</button>'+
+        '</div></div></div>';
+  } else {
+    var isBw = (ex.type==='bodyweight');
+    html += '<div class="edit-fields">'+
+      editFieldLib(ex.id,oi,'sets','Sets',o.sets,1)+
+      editFieldLib(ex.id,oi,'reps',ex.time?'Secs':'Reps',o.reps,1)+
+      (!isBw ? editFieldLib(ex.id,oi,'weight','Weight ('+libUnitLabel(o,ex)+')',o.weight,2.5)
+             : '<div class="edit-field"><div class="edit-field-label">Weight</div><div style="font-size:11px;color:var(--ink-mute);padding-top:6px;">Bodyweight</div></div>')+
+    '</div>';
+  }
+  return html + '</div>';
+}
+function editFieldLib(id,oi,field,label,val,step){
+  return '<div class="edit-field"><div class="edit-field-label">'+label+'</div><div class="edit-field-ctrl">'+
+    '<button class="ef-btn" onclick="edLibAdj(\''+id+'\','+oi+',\''+field+'\',-'+step+')">−</button>'+
+    '<input class="ef-input" type="number" value="'+val+'" step="'+step+'" onchange="edLibSet(\''+id+'\','+oi+',\''+field+'\',this.value)">'+
+    '<button class="ef-btn" onclick="edLibAdj(\''+id+'\','+oi+',\''+field+'\','+step+')">+</button></div></div>';
+}
+function edLibAdj(id,oi,field,delta){ libAdj(id,oi,field,delta); renderEditDrawer(); }
+function edLibSet(id,oi,field,raw){ libSetField(id,oi,field,raw); renderEditDrawer(); }
+
+// Legacy edit row (frozen past days) — uses the temp S.wo override flow.
+function editRowLegacy(ex) {
+  var cur = _editTemp[ex.id] ? _editTemp[ex.id] : {sets:ex.sets,reps:ex.reps,weight:ex.weight,unit:ex.unit};
+  var sug = suggestedWeight(ex, S.w);
+  var isBodyweight = ex.unit === 'bodyweight';
+  return '<div class="edit-row">'+
+    '<div class="edit-row-name">'+ex.name+'</div>'+
+    '<div class="edit-fields">'+
+      '<div class="edit-field"><div class="edit-field-label">Sets</div><div class="edit-field-ctrl">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',-1)">−</button>'+
+        '<input class="ef-input" type="number" id="ef-sets-'+ex.id+'" value="'+cur.sets+'" min="1" max="10" onchange="editSet(\''+ex.id+'\',\'sets\',this.value)">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',1)">+</button></div></div>'+
+      '<div class="edit-field"><div class="edit-field-label">Reps</div><div class="edit-field-ctrl">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',-1)">−</button>'+
+        '<input class="ef-input" type="number" id="ef-reps-'+ex.id+'" value="'+cur.reps+'" min="1" max="50" onchange="editSet(\''+ex.id+'\',\'reps\',this.value)">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',1)">+</button></div></div>'+
+      (!isBodyweight ?
+      '<div class="edit-field"><div class="edit-field-label">Weight ('+cur.unit+')</div><div class="edit-field-ctrl">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',-2.5)">−</button>'+
+        '<input class="ef-input" type="number" id="ef-weight-'+ex.id+'" value="'+cur.weight+'" min="0" step="2.5" onchange="editSet(\''+ex.id+'\',\'weight\',this.value)">'+
+        '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',2.5)">+</button></div>'+
+        (sug !== null ? '<div class="edit-suggest">▸ Wk '+(S.w+1)+' target: '+sug+' '+cur.unit+'</div>' : '')+
+      '</div>' : '<div class="edit-field"><div class="edit-field-label">Weight</div><div style="font-size:11px;color:var(--ink-mute);padding-top:6px;">Bodyweight</div></div>')+
+    '</div>'+
+  '</div>';
 }
 
 function editEnsure(id, ex) {
@@ -1961,6 +2450,7 @@ function switchTab(name){
   document.querySelectorAll('.panel').forEach(function(p){
     p.classList.toggle('active',p.id==='panel-'+name);
   });
+  if(name==='workouts') renderLibrary();
   if(name==='overview') renderOverview();
   if(name==='supplog')  renderSuppLog();
   document.getElementById('main').scrollTop=0;
@@ -1998,6 +2488,9 @@ document.getElementById('import-file').addEventListener('change',function(e){
       if (parsed.chk)       S.chk       = parsed.chk;
       if (parsed.log)       S.log       = parsed.log;
       if (parsed.wo)        S.wo        = parsed.wo;
+      if (parsed.lib)       S.lib       = parsed.lib;
+      if (parsed.restDays)  S.restDays  = parsed.restDays;
+      if (parsed.swap)      S.swap      = parsed.swap;
       if (parsed.suppChk)   S.suppChk   = parsed.suppChk;
       if (parsed.suppStart) S.suppStart = parsed.suppStart;
       if (parsed.w)         S.w         = parsed.w;
