@@ -564,6 +564,109 @@ body::before {
 .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: var(--green); color: var(--bg); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; padding: 9px 18px; z-index: 5000; transition: transform .3s ease; white-space: nowrap; pointer-events: none; }
 .toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── RETURN TO RUNNING ─────────────────────────────────── */
+/* Daily Log run block */
+.run-sec { border: 1px solid var(--line); margin: 10px 0; overflow: hidden; background: rgba(107,163,201,.025); }
+.run-head { padding: 10px 14px; background: var(--panel); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); }
+.run-head-sub { font-size: 8px; letter-spacing: .08em; color: var(--ink-mute); text-transform: none; }
+.run-body { padding: 6px 0 12px; }
+.run-checks { border-bottom: 1px solid var(--line); }
+.run-didrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px 6px; flex-wrap: wrap; }
+.run-q { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
+.run-toggle { padding: 8px 14px; border: 1px solid var(--line); background: transparent; color: var(--ink-dim);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .08em; cursor: pointer; transition: all .15s; }
+.run-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.run-toggle.on { border-color: var(--green); background: rgba(107,142,78,.12); color: var(--green); }
+.run-form { padding: 4px 14px 0; }
+.run-field { margin-top: 12px; }
+.run-label { font-size: 8px; letter-spacing: .18em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 4px; }
+.run-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.run-grid .run-field { margin-top: 12px; }
+.run-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.run-pill { flex: 1; min-width: 90px; padding: 8px 6px; border: 1px solid var(--line); background: transparent; color: var(--ink-mute);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .04em; cursor: pointer; transition: all .15s; text-align: center; }
+.run-pill:hover { color: var(--ink); }
+.run-pill.sel { border-color: var(--accent); background: rgba(201,169,110,.12); color: var(--accent); }
+.run-pill.sel-g { border-color: var(--green); background: rgba(107,142,78,.14); color: var(--green); }
+.run-pill.sel-r { border-color: #c96b6b; background: rgba(201,107,107,.14); color: #d98a8a; }
+.run-saved { padding: 8px 14px 0; font-size: 9px; letter-spacing: .1em; color: var(--ink-mute); text-transform: uppercase; }
+.run-saved.ok { color: var(--green); }
+
+/* Running tab */
+#runview { padding: 4px 16px 90px; }
+.run-hero { margin-bottom: 18px; }
+.run-hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px,7vw,56px); line-height: .95; color: var(--ink); margin-top: 6px; }
+.run-hero-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--ink-dim); margin-top: 8px; max-width: 620px; }
+.run-block { border: 1px solid var(--line); margin-bottom: 12px; background: var(--panel); }
+.run-block-hd { padding: 12px 14px; font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: .03em; color: var(--ink);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.run-block-hd.toggle { cursor: pointer; }
+.run-block-hd.toggle:hover { color: var(--accent); }
+.run-caret { font-size: 12px; color: var(--ink-mute); transition: transform .2s; }
+.run-block-body { padding: 0 14px 14px; }
+.run-block-body.collapsed { display: none; }
+
+.run-weekctrl { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.rw-btn { width: 40px; height: 40px; border: 1px solid var(--line); background: transparent; color: var(--accent);
+  font-size: 20px; cursor: pointer; transition: all .15s; flex-shrink: 0; }
+.rw-btn:hover { border-color: var(--accent); background: rgba(201,169,110,.1); }
+.rw-cur { flex: 1; text-align: center; }
+.rw-cur-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: .14em; color: var(--ink); }
+.rw-cur-phase { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: .04em; margin-top: 2px; }
+.run-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.run-stat { border: 1px solid var(--line); padding: 12px 10px; text-align: center; background: rgba(0,0,0,.12); }
+.rs-num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; line-height: 1; color: var(--ink); }
+.rs-lbl { font-size: 8px; letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; margin-top: 5px; }
+.run-trend { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; }
+.rt-lbl { font-size: 9px; letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; }
+.rt-dots { display: flex; gap: 5px; }
+.rt-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.run-prescription { border: 1px solid var(--line); padding: 11px 12px; margin-top: 4px; background: rgba(0,0,0,.12); }
+.rp-lbl { font-size: 8px; letter-spacing: .18em; color: var(--ink-mute); text-transform: uppercase; }
+.rp-body { font-size: 12px; color: var(--ink); margin-top: 5px; line-height: 1.5; }
+.rp-note { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; color: var(--ink-dim); margin-top: 5px; }
+.run-rules { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.run-rule { font-size: 9px; letter-spacing: .04em; color: var(--ink-dim); border: 1px solid var(--line); padding: 4px 8px; }
+
+.proto-list { display: flex; flex-direction: column; gap: 8px; }
+.proto-row { padding: 9px 11px; background: rgba(0,0,0,.12); }
+.proto-row.current { background: rgba(201,169,110,.08); box-shadow: inset 0 0 0 1px rgba(201,169,110,.35); }
+.proto-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.proto-wk { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; font-weight: 700; }
+.proto-phase { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-dim); }
+.proto-loc { font-size: 9px; color: var(--ink-mute); margin-left: auto; }
+.proto-session { font-size: 12px; color: var(--ink); margin-top: 5px; }
+.proto-note { font-family: 'Fraunces', serif; font-style: italic; font-size: 11.5px; color: var(--ink-dim); margin-top: 3px; line-height: 1.45; }
+
+.run-move-intro { font-size: 11.5px; color: var(--ink-dim); line-height: 1.5; margin-bottom: 10px; }
+.run-twobtns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.run-chkbtn { flex: 1; min-width: 130px; padding: 9px 8px; border: 1px solid var(--line); background: transparent; color: var(--ink-dim);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .06em; cursor: pointer; transition: all .15s; }
+.run-chkbtn:hover { border-color: var(--accent); color: var(--accent); }
+.run-chkbtn.on { border-color: var(--green); background: rgba(107,142,78,.12); color: var(--green); }
+.run-moves { display: flex; flex-direction: column; gap: 9px; }
+.run-move { padding: 9px 11px; background: rgba(0,0,0,.12); border-left: 2px solid var(--line); }
+.run-move-n { font-size: 12px; color: var(--ink); font-weight: 600; display: flex; align-items: baseline; gap: 8px; }
+.run-move-i { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--line); padding: 1px 6px; flex-shrink: 0; }
+.run-move-d { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; color: var(--ink-dim); line-height: 1.5; margin-top: 5px; }
+.run-callout { margin-top: 12px; padding: 10px 12px; border: 1px solid rgba(201,169,110,.3); background: rgba(201,169,110,.06);
+  font-size: 11.5px; color: var(--accent); line-height: 1.5; }
+.run-ref-h { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: .04em; color: var(--accent); margin: 14px 0 6px; }
+.run-ref-h:first-child { margin-top: 0; }
+.run-bullets { margin: 0; padding-left: 18px; }
+.run-bullets li { font-size: 12px; color: var(--ink-dim); line-height: 1.55; margin-bottom: 5px; }
+
+.run-hist { display: flex; flex-direction: column; gap: 8px; }
+.run-hrow { padding: 9px 11px; background: rgba(0,0,0,.12); border-left: 2px solid var(--line); }
+.run-hrow-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.run-hdate { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .06em; color: var(--ink); }
+.run-hach { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.run-hmeta { font-size: 10.5px; color: var(--ink-mute); margin-top: 4px; line-height: 1.5; }
+.run-hphase { letter-spacing: .1em; text-transform: uppercase; font-size: 9px; }
+.run-hnote { font-family: 'Fraunces', serif; font-style: italic; font-size: 11.5px; color: var(--ink-dim); margin-top: 5px; line-height: 1.45; }
+.run-empty { font-size: 12px; color: var(--ink-mute); font-style: italic; line-height: 1.5; padding: 6px 0; }
 </style>
 </head>
 <body>
@@ -597,6 +700,7 @@ body::before {
   <div id="tabs">
     <button class="tab active" data-panel="daily">Daily Log</button>
     <button class="tab" data-panel="workouts">Workouts</button>
+    <button class="tab" data-panel="running">Running</button>
     <button class="tab" data-panel="overview">Overview</button>
     <button class="tab" data-panel="supplog">Supplements</button>
     <button class="tab" data-panel="stack">The Stack</button>
@@ -615,6 +719,11 @@ body::before {
     <!-- ══ WORKOUT LIBRARY ═══════════════════════════════════ -->
     <div class="panel" id="panel-workouts">
       <div id="libview"></div>
+    </div>
+
+    <!-- ══ RUNNING — RETURN TO RUNNING PROGRAM ═══════════════ -->
+    <div class="panel" id="panel-running">
+      <div id="runview"></div>
     </div>
 
     <!-- ══ OVERVIEW ══════════════════════════════════════════ -->
@@ -808,6 +917,7 @@ var S = {
   restDays: {}, // "w-d" → true  (manually toggled rest/off day)
   swap: {},  // week → dayIndex that swaps its rest with Wednesday
   libCollapse: {}, // workout-library group key → true when collapsed/closed
+  runWeek: 1, // return-to-running program pointer (1–12), advanced by symptom response
   // supplement state
   suppChk: {}, // "suppDay-itemId" → true
   suppStart: null,
@@ -910,6 +1020,7 @@ function loadAll() {
       S.restDays = p.restDays || {};
       S.swap     = p.swap     || {};
       S.libCollapse = p.libCollapse || {};
+      S.runWeek  = p.runWeek  || 1;
       S.suppChk  = p.suppChk  || {};
       S.suppStart= p.suppStart|| null;
       // If we found data under a different key, re-save under current key
@@ -1997,6 +2108,9 @@ function renderDay(){
     }
   });
 
+  // return-to-running daily checklist + run log
+  html+=renderRunSection(S.w,S.d);
+
   // nav
   var prevW=S.w,prevD=S.d-1;
   if(prevD<0){prevW--;prevD=6;}
@@ -2022,6 +2136,7 @@ function renderDay(){
 
   // re-attach log listeners
   attachLogListeners(S.w,S.d);
+  attachRunListeners(S.w,S.d);
 }
 
 function renderLogBody(w,d){
@@ -2512,6 +2627,7 @@ function switchTab(name){
     p.classList.toggle('active',p.id==='panel-'+name);
   });
   if(name==='workouts') renderLibrary();
+  if(name==='running')  renderRunning();
   if(name==='overview') renderOverview();
   if(name==='supplog')  renderSuppLog();
   document.getElementById('main').scrollTop=0;
@@ -2553,6 +2669,7 @@ document.getElementById('import-file').addEventListener('change',function(e){
       if (parsed.restDays)  S.restDays  = parsed.restDays;
       if (parsed.swap)      S.swap      = parsed.swap;
       if (parsed.libCollapse) S.libCollapse = parsed.libCollapse;
+      if (parsed.runWeek)   S.runWeek   = parsed.runWeek;
       if (parsed.suppChk)   S.suppChk   = parsed.suppChk;
       if (parsed.suppStart) S.suppStart = parsed.suppStart;
       if (parsed.w)         S.w         = parsed.w;
@@ -2578,6 +2695,355 @@ document.getElementById('reset-btn').addEventListener('click',function(){
     saveAll(); renderAll();
   }
 });
+
+// ═══════════════════════════════════════════════════════
+//  RETURN TO RUNNING  —  data, daily log block, Running tab
+// ═══════════════════════════════════════════════════════
+
+// 12-week protocol (Achilles-led return to running)
+var RUN_PLAN=[
+  {wk:1, phase:'Foundation', loc:'Treadmill', session:'1 min jog / 2 min walk × 6 (~18 min)', note:"Conversational pace. 3 sessions/wk, never back-to-back. Start Alfredson reduced (≈2×10), watch 24–48 h response."},
+  {wk:2, phase:'Foundation', loc:'Treadmill', session:'2 min jog / 2 min walk × 6 (~24 min)', note:"Easy pace. Build Alfredson toward 3×15. Hip-stability 2×."},
+  {wk:3, phase:'Foundation', loc:'Treadmill', session:'2 min jog / 1 min walk × 6 (~18 min)', note:"Advance only if zero next-day Achilles symptoms."},
+  {wk:4, phase:'Build', loc:'Treadmill', session:'3 min jog / 1 min walk × 5 (~20 min)', note:"Full Alfredson volume (3×15 straight + bent, twice daily)."},
+  {wk:5, phase:'Build', loc:'Treadmill', session:'5 min jog / 1 min walk × 4 (~24 min)', note:"Right mid-calf pressure → back off pace, don't push through."},
+  {wk:6, phase:'Build', loc:'Treadmill', session:'8–10 min jog / 1 min walk × 3 (~30 min)', note:"GATE: ~20–30 min continuous pain-free before going outdoors."},
+  {wk:7, phase:'Outdoor Transition', loc:'Outdoor AM + 1 treadmill', session:'Continuous easy run 20 min', note:"First outdoor: flat even pavement, first light. Start 10–14 day heat acclimatization. Re-Lyte pre-run."},
+  {wk:8, phase:'Outdoor Transition', loc:'Outdoor AM + 1 treadmill', session:'Continuous easy run 22–25 min', note:"Keep heat exposure consistent. Treadmill backup if a morning is brutal."},
+  {wk:9, phase:'Outdoor Transition', loc:'Outdoor AM', session:'Continuous easy run 25–30 min', note:"Effort stays conversational despite humidity."},
+  {wk:10, phase:'Consolidation', loc:'Outdoor AM', session:'Easy run ~1.25–1.5 mi (30 min)', note:"Repeatable outdoor base. Volume up ≤10% wk/wk."},
+  {wk:11, phase:'Consolidation', loc:'Outdoor AM', session:'Easy run ~1.5–2 mi (30+ min)', note:"Comfortable 2-mile range is the target."},
+  {wk:12, phase:'Consolidation', loc:'Outdoor AM', session:'Easy run 2 mi + optional 4–6 × 30–60 s light pickups', note:"Pickups ONLY if Achilles & calf fully quiet. Controlled, not max."}
+];
+
+var RUN_WARMUP=[
+  {n:'Ankle Circles', d:"Stand on one leg (hold something for balance). Lift the other foot and draw slow circles with your toes — 10 each direction, then switch. Wakes up the ankle and primes the Achilles."},
+  {n:'Controlled Calf Raises', d:"Flat stance, hip-width. Rise slowly onto the balls of both feet over 2 s, pause, lower over 3 s. 2×12. Pre-loads the Achilles gently — no bouncing."},
+  {n:'Leg Swings — Front to Back', d:"Hold a wall/rail. Swing one leg forward and back like a pendulum, a little farther each rep. 12/leg. Opens hip flexion/extension."},
+  {n:'Leg Swings — Lateral', d:"Face the wall, both hands on it. Swing one leg across the body and out to the side. 12/leg. Primes glute med for stability."},
+  {n:'Walking Knee Hugs', d:"Walk slowly; each step pull the lifted knee to your chest, stand tall, step through. 8/leg. Dynamic hip-flexor/glute mobility."},
+  {n:'Glute Bridges', d:"On your back, knees bent, feet flat. Drive through heels, lift hips to a straight line, squeeze glutes 1 s at top, lower slow. 12 reps. Switches the glutes ON so the knee doesn't track inward."},
+  {n:'Walk-In (Gradual Start)', d:"Walk easy 3–5 min, building to brisk, before intervals. Lets HR climb gradually (smart given cardiac history) and gets blood into the tendons."}
+];
+
+var RUN_ALFREDSON=[
+  {n:'Eccentric Heel Drop — Straight Knee', d:"Balls of both feet on a step edge, heels off. Rise on both feet, shift weight to the RIGHT (injured) foot, keep knee straight, lower the heel slowly over 3–5 s below the step. Use the left foot to return up. Targets gastrocnemius."},
+  {n:'Eccentric Heel Drop — Bent Knee', d:"Same, but with a soft bend in the right knee throughout the lower. Loads the soleus (missed by the straight-knee version). Non-negotiable for full remodeling."}
+];
+
+var RUN_HIP=[
+  {n:'Clamshells', d:"Side-lying, knees bent ~45°, feet together. Lift the top knee by rotating at the hip without rolling the pelvis back. 15/side. Glute med."},
+  {n:'Monster Walks (Band)', d:"Mini-band at ankles or above knees. Half-squat, step sideways keeping band tension, 10 steps each way. Toes forward, knees pushed out."},
+  {n:'Side-Lying Leg Raises', d:"Bottom leg bent, top leg straight, toe slightly down/forward; raise to ~45°. 12/side."},
+  {n:'Single-Leg Glute Bridge', d:"Glute bridge with one leg extended straight; drive through the planted heel. 10/side. Exposes/corrects L–R imbalance."}
+];
+
+var RUN_SHOE=[
+  "Get a proper gait analysis — post-resurfacing mechanics may have shifted.",
+  "Favor a higher heel-to-toe drop (8–12 mm): offloads the Achilles by reducing tendon stretch at footstrike.",
+  "Cushioned daily-trainer category (not minimalist/zero-drop) for impact attenuation.",
+  "Replace shoes every ~300–400 mi."
+];
+var RUN_HEAT=[
+  "Run at first light.",
+  "Acclimatization ~10–14 days; humidity raises cardiovascular demand ~10–15% vs treadmill — slow down, don't fight the pace.",
+  "Pre-hydrate ~16 oz water + Re-Lyte 60–90 min prior; rehydrate after.",
+  "Conversational-pace rule is the safety governor.",
+  "Cardiac: cleared, but stop on chest pressure, unusual breathlessness, or dizziness."
+];
+var RUN_RULES=[
+  "10%/week volume cap",
+  "3 runs/week — never back-to-back",
+  "Advance phases by symptom response, not the calendar",
+  "Stop if Achilles pain exceeds 3/10"
+];
+
+// Achilles signal display helpers
+function runAchLabel(v){ return v==='quiet'?'Quiet':v==='mild'?'Mild pressure':v==='sharp'?'Sharp — STOP':'—'; }
+function runAchColor(v){ return v==='quiet'?'var(--green)':v==='mild'?'var(--accent)':v==='sharp'?'#c96b6b':'var(--ink-mute)'; }
+function runPhaseColor(p){ return p==='Foundation'?'var(--blue)':p==='Build'?'var(--accent)':p==='Outdoor Transition'?'var(--green)':'var(--rest)'; }
+function runPlanFor(wk){ return RUN_PLAN[Math.max(0,Math.min(11,(wk||1)-1))]; }
+// Escape for safe insertion into attribute values / textareas
+function rEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── per-day run object accessors ───────────────────────────────────────────
+function getRun(w,d){ var l=S.log[w+'-'+d]; return (l&&l.run)||{}; }
+function ensureRun(w,d){ var k=w+'-'+d; if(!S.log[k])S.log[k]={}; if(!S.log[k].run)S.log[k].run={}; return S.log[k].run; }
+function runChkKey(name,w,d){ return 'run-'+name+'-'+w+'-'+d; }
+
+// Re-render both surfaces that show run state (daily log + running tab)
+function runRerender(){ renderDay(); if(document.getElementById('runview')) renderRunning(); }
+
+function toggleRunChk(name,w,d){
+  var k=runChkKey(name,w,d);
+  if(S.chk[k]) delete S.chk[k]; else S.chk[k]=true;
+  saveAll(); runRerender();
+}
+function toggleRanToday(w,d){
+  var r=ensureRun(w,d);
+  if(r.did){ r.did=false; }
+  else {
+    r.did=true;
+    var p=runPlanFor(S.runWeek);
+    if(!r.phase)     r.phase=p.phase;
+    if(!r.location)  r.location=(p.loc.indexOf('Outdoor')===0?'Outdoor AM':'Treadmill');
+    if(!r.intervals) r.intervals=p.session;
+    if(r.week==null) r.week=S.runWeek;
+  }
+  saveAll(); runRerender();
+}
+function setRunLoc(w,d,loc){ ensureRun(w,d).location=loc; saveAll(); runRerender(); }
+function setRunAchilles(w,d,v){ ensureRun(w,d).achilles=v; saveAll(); runRerender(); }
+function setRunWeek(n){ S.runWeek=Math.max(1,Math.min(12,n)); saveAll(); runRerender(); }
+
+// ── Daily Log: the run checklist + log block ───────────────────────────────
+function renderRunSection(w,d){
+  var r=getRun(w,d), ran=!!r.did, p=runPlanFor(S.runWeek);
+  var ck=function(name){ return !!S.chk[runChkKey(name,w,d)]; };
+  var pc=runPhaseColor(p.phase);
+  var html='<div class="run-sec">'+
+    '<div class="run-head" style="border-left:3px solid '+pc+'">'+
+      '<span>🏃 RETURN TO RUNNING · WK '+S.runWeek+' · <span style="color:'+pc+'">'+p.phase.toUpperCase()+'</span></span>'+
+      '<span class="run-head-sub">'+p.session+'</span>'+
+    '</div>'+
+    '<div class="run-body">';
+
+  // Daily accountability checkboxes (persist via chk, run- namespace)
+  var checks=[['warmup','Warm-up done — full sequence'],['alf-am','Alfredson eccentrics — AM (3×15)'],['alf-pm','Alfredson eccentrics — PM (3×15)'],['hip','Hip-stability circuit (2×/wk)']];
+  html+='<div class="run-checks">';
+  checks.forEach(function(c){
+    var on=ck(c[0]);
+    html+='<div class="ti'+(on?' done':'')+'" onclick="toggleRunChk(\''+c[0]+'\','+w+','+d+')">'+
+      '<div class="cb">'+(on?'✓':'')+'</div><div class="ct">'+c[1]+'</div></div>';
+  });
+  html+='</div>';
+
+  // Did you run today?
+  html+='<div class="run-didrow"><span class="run-q">Did you run today?</span>'+
+    '<button class="run-toggle'+(ran?' on':'')+'" onclick="toggleRanToday('+w+','+d+')">'+(ran?'✓ Run logged — tap to undo':'+ Log today\'s run')+'</button></div>';
+
+  if(ran){
+    html+='<div class="run-form">'+
+      '<div class="run-field"><div class="run-label">Location</div><div class="run-btns">'+
+        '<button class="run-pill'+(r.location==='Treadmill'?' sel':'')+'" onclick="setRunLoc('+w+','+d+',\'Treadmill\')">Treadmill</button>'+
+        '<button class="run-pill'+(r.location==='Outdoor AM'?' sel':'')+'" onclick="setRunLoc('+w+','+d+',\'Outdoor AM\')">Outdoor AM</button>'+
+      '</div></div>'+
+      '<div class="run-grid">'+
+        '<div class="run-field"><div class="run-label">Duration (min)</div><input class="log-input" type="number" id="run-durationMin" value="'+(r.durationMin||'')+'" placeholder="min"></div>'+
+        '<div class="run-field"><div class="run-label">Distance (mi) · optional</div><input class="log-input" type="number" step="0.01" id="run-distanceMi" value="'+(r.distanceMi||'')+'" placeholder="—"></div>'+
+        '<div class="run-field"><div class="run-label">RPE (1–10)</div><input class="log-input" type="number" min="1" max="10" id="run-rpe" value="'+(r.rpe||'')+'" placeholder="effort"></div>'+
+        '<div class="run-field"><div class="run-label">Avg HR · optional</div><input class="log-input" type="number" id="run-hr" value="'+(r.hr||'')+'" placeholder="bpm"></div>'+
+      '</div>'+
+      '<div class="run-field"><div class="run-label">Intervals / session (prefilled, editable)</div><input class="log-input" type="text" id="run-intervals" value="'+rEsc(r.intervals||p.session)+'"></div>'+
+      '<div class="run-field"><div class="run-label">Achilles signal during / after</div><div class="run-btns">'+
+        '<button class="run-pill'+(r.achilles==='quiet'?' sel-g':'')+'" onclick="setRunAchilles('+w+','+d+',\'quiet\')">Quiet ✓</button>'+
+        '<button class="run-pill'+(r.achilles==='mild'?' sel':'')+'" onclick="setRunAchilles('+w+','+d+',\'mild\')">Mild pressure</button>'+
+        '<button class="run-pill'+(r.achilles==='sharp'?' sel-r':'')+'" onclick="setRunAchilles('+w+','+d+',\'sharp\')">Sharp — STOP</button>'+
+      '</div></div>'+
+      '<div class="run-grid">'+
+        '<div class="run-field"><div class="run-label">Phase (auto, editable)</div><input class="log-input" type="text" id="run-phase" value="'+rEsc(r.phase||p.phase)+'"></div>'+
+        '<div class="run-field"><div class="run-label">Logged under running week</div><input class="log-input" type="number" min="1" max="12" id="run-week" value="'+(r.week||S.runWeek)+'"></div>'+
+      '</div>'+
+      '<div class="run-field"><div class="run-label">Run notes</div><textarea class="log-textarea" id="run-notes" placeholder="How the legs felt, breathing, heat, anything notable...">'+rEsc(r.notes||'')+'</textarea></div>'+
+    '</div>';
+  }
+  html+='<div class="run-saved" id="run-saved-indicator">Auto-saves on input</div>';
+  html+='</div></div>';
+  return html;
+}
+
+function attachRunListeners(w,d){
+  var numF=['durationMin','distanceMi','rpe','hr','week'];
+  var txtF=['intervals','notes','phase'];
+  numF.concat(txtF).forEach(function(f){
+    var el=document.getElementById('run-'+f);
+    if(!el) return;
+    el.addEventListener('input',function(){
+      var r=ensureRun(w,d); r.did=true; if(r.week==null) r.week=S.runWeek;
+      if(numF.indexOf(f)>=0){ var v=parseFloat(el.value); r[f]=isNaN(v)?'':v; }
+      else r[f]=el.value;
+      var ind=document.getElementById('run-saved-indicator');
+      if(ind){ ind.textContent='Saving...'; ind.classList.remove('ok'); }
+      clearTimeout(el._t);
+      el._t=setTimeout(function(){
+        saveAll();
+        if(ind){ ind.textContent='✓ Saved'; ind.classList.add('ok'); }
+      },700);
+    });
+  });
+}
+
+// ── Running tab aggregation ────────────────────────────────────────────────
+function runEntries(){
+  return Object.keys(S.log)
+    .filter(function(k){ var r=S.log[k].run; return r&&r.did; })
+    .map(function(k){ var pr=k.split('-'); return {w:+pr[0], d:+pr[1], ord:(+pr[0]-1)*7+(+pr[1]), run:S.log[k].run}; })
+    .filter(function(e){ return !isNaN(e.w)&&!isNaN(e.d); })
+    .sort(function(a,b){ return b.ord-a.ord; });
+}
+function runStats(){
+  var ents=runEntries(), total=ents.length, thisWeek=0, longest=0, longestDist=0, last=null;
+  ents.forEach(function(e){
+    var r=e.run;
+    if((r.week||null)===S.runWeek) thisWeek++;
+    if(r.durationMin && r.durationMin>longest) longest=r.durationMin;
+    if(r.distanceMi && r.distanceMi>longestDist) longestDist=r.distanceMi;
+  });
+  // most recent achilles signal = first entry (sorted desc) that has one
+  for(var i=0;i<ents.length;i++){ if(ents[i].run.achilles){ last=ents[i].run.achilles; break; } }
+  // trend over last up-to-5 logged signals
+  var recent=[]; for(var j=0;j<ents.length && recent.length<5;j++){ if(ents[j].run.achilles) recent.push(ents[j].run.achilles); }
+  return {total:total, thisWeek:thisWeek, longest:longest, longestDist:longestDist, last:last, recent:recent};
+}
+
+function renderRunning(){
+  var p=runPlanFor(S.runWeek), pc=runPhaseColor(p.phase), st=runStats();
+  var H='';
+
+  // Header
+  H+='<div class="run-hero">'+
+    '<span class="stamp">12-Week Return to Running · Achilles-Led</span>'+
+    '<div class="run-hero-title">Return to <span style="color:var(--accent)">Running</span></div>'+
+    '<div class="run-hero-sub">Rebuild to easy 1–2 mi outdoor runs through the Houston summer — paced by your Achilles, not the calendar.</div>'+
+  '</div>';
+
+  // A. SNAPSHOT
+  H+='<div class="run-block"><div class="run-block-hd">Snapshot</div>';
+  H+='<div class="run-weekctrl">'+
+      '<button class="rw-btn" onclick="setRunWeek('+(S.runWeek-1)+')">−</button>'+
+      '<div class="rw-cur"><div class="rw-cur-num">WEEK '+S.runWeek+' / 12</div><div class="rw-cur-phase" style="color:'+pc+'">'+p.phase+'</div></div>'+
+      '<button class="rw-btn" onclick="setRunWeek('+(S.runWeek+1)+')">+</button>'+
+    '</div>';
+  H+='<div class="run-stats">'+
+      '<div class="run-stat"><div class="rs-num" style="color:'+pc+'">'+st.thisWeek+' / 3</div><div class="rs-lbl">Runs this week</div></div>'+
+      '<div class="run-stat"><div class="rs-num">'+st.total+'</div><div class="rs-lbl">Total runs logged</div></div>'+
+      '<div class="run-stat"><div class="rs-num">'+(st.longest?st.longest+'m':'—')+'</div><div class="rs-lbl">Longest continuous</div></div>'+
+      '<div class="run-stat"><div class="rs-num" style="color:'+runAchColor(st.last)+'">'+runAchLabel(st.last)+'</div><div class="rs-lbl">Latest Achilles</div></div>'+
+    '</div>';
+  if(st.recent.length){
+    H+='<div class="run-trend"><span class="rt-lbl">Recent Achilles trend</span><span class="rt-dots">';
+    st.recent.slice().reverse().forEach(function(a){ H+='<span class="rt-dot" style="background:'+runAchColor(a)+'" title="'+runAchLabel(a)+'"></span>'; });
+    H+='</span></div>';
+  }
+  H+='<div class="run-prescription"><span class="rp-lbl">This week\'s prescription</span><div class="rp-body"><b style="color:'+pc+'">'+p.loc+'</b> · '+p.session+'<div class="rp-note">'+p.note+'</div></div></div>';
+  // governing rules
+  H+='<div class="run-rules">';
+  RUN_RULES.forEach(function(r){ H+='<span class="run-rule">'+r+'</span>'; });
+  H+='</div>';
+  H+='</div>';
+
+  // B. 12-WEEK PROTOCOL (collapsible)
+  H+=runCollapsible('run-proto','12-Week Protocol', (function(){
+    var s='<div class="proto-list">';
+    RUN_PLAN.forEach(function(r){
+      var c=runPhaseColor(r.phase), cur=(r.wk===S.runWeek);
+      s+='<div class="proto-row'+(cur?' current':'')+'" style="border-left:3px solid '+c+'">'+
+        '<div class="proto-top"><span class="proto-wk" style="color:'+c+'">WK '+r.wk+(cur?' · NOW':'')+'</span>'+
+          '<span class="proto-phase">'+r.phase+'</span>'+
+          '<span class="proto-loc">'+r.loc+'</span></div>'+
+        '<div class="proto-session">'+r.session+'</div>'+
+        '<div class="proto-note">'+r.note+'</div>'+
+      '</div>';
+    });
+    s+='</div>'; return s;
+  })(), true);
+
+  // C. DAILY WARM-UP (with today's checkbox mirrored from the daily log)
+  H+=runCollapsible('run-warm','Daily Warm-Up', runMoveList(RUN_WARMUP, 'warmup',
+    'Do before every run. Tap to mark today complete (syncs with your Daily Log).'), true);
+
+  // D. ACHILLES — ALFREDSON
+  H+=runCollapsible('run-alf','Achilles Protocol — Alfredson Eccentrics',
+    '<div class="run-move-intro">3×15 each, <b>twice daily</b>, lower over 3–5 s. Continue all 12 weeks — pain quiets before the tendon finishes remodeling.</div>'+
+    '<div class="run-twobtns">'+
+      runTodayChkBtn('alf-am','Mark AM done')+runTodayChkBtn('alf-pm','Mark PM done')+
+    '</div>'+
+    runMoveList(RUN_ALFREDSON, null, null)+
+    '<div class="run-callout">Most common mistake: stopping when pain disappears. Keep going the full 12 weeks. "Do-as-tolerated" volume is fine — build up and watch the 24–48 h response.</div>'
+  , true);
+
+  // E. HIP-STABILITY CIRCUIT
+  H+=runCollapsible('run-hip','Hip-Stability Circuit', runMoveList(RUN_HIP, 'hip',
+    '2×/week on non-running or post-run days. Tap to mark today (syncs with Daily Log).'), true);
+
+  // F. SHOE & GAIT + HEAT/HYDRATION
+  H+=runCollapsible('run-ref','Shoe, Gait & Houston Heat',
+    '<div class="run-ref-h">Shoe & Gait</div>'+runBullets(RUN_SHOE)+
+    '<div class="run-ref-h">Houston Heat & Hydration</div>'+runBullets(RUN_HEAT), true);
+
+  // G. RUN HISTORY
+  H+=runCollapsible('run-hist','Run History', runHistory(), true);
+
+  // Optional: recovery correlation (Oura sleep / HRV already logged)
+  H+=runCollapsible('run-corr','Recovery Correlation', runCorrelation(), false);
+
+  document.getElementById('runview').innerHTML=H;
+}
+
+// Collapsible reference block (DOM-only toggle)
+function runCollapsible(id, title, bodyHtml, openByDefault){
+  var col=openByDefault?'':' collapsed';
+  return '<div class="run-block">'+
+    '<div class="run-block-hd toggle" onclick="toggleSec(\''+id+'\')">'+
+      '<span>'+title+'</span><span class="run-caret">▾</span></div>'+
+    '<div class="run-block-body'+col+'" id="'+id+'">'+bodyHtml+'</div>'+
+  '</div>';
+}
+// Movement list with name + how-to description; optional today checkbox key
+function runMoveList(arr, chkName, introTxt){
+  var s='';
+  if(introTxt) s+='<div class="run-move-intro">'+introTxt+'</div>';
+  if(chkName) s+='<div class="run-twobtns">'+runTodayChkBtn(chkName,'Mark today done')+'</div>';
+  s+='<div class="run-moves">';
+  arr.forEach(function(m,i){
+    s+='<div class="run-move"><div class="run-move-n"><span class="run-move-i">'+(i+1)+'</span>'+m.n+'</div><div class="run-move-d">'+m.d+'</div></div>';
+  });
+  s+='</div>';
+  return s;
+}
+// A button bound to today's run- checkbox, reflecting + toggling its state
+function runTodayChkBtn(name, label){
+  var on=!!S.chk[runChkKey(name,S.w,S.d)];
+  return '<button class="run-chkbtn'+(on?' on':'')+'" onclick="toggleRunChk(\''+name+'\','+S.w+','+S.d+')">'+(on?'✓ ':'')+label+(on?' (today)':'')+'</button>';
+}
+function runBullets(arr){
+  var s='<ul class="run-bullets">';
+  arr.forEach(function(b){ s+='<li>'+b+'</li>'; });
+  return s+'</ul>';
+}
+function runHistory(){
+  var ents=runEntries();
+  if(!ents.length) return '<div class="run-empty">No runs logged yet. Log your first run from the Daily Log tab — it will appear here automatically.</div>';
+  var s='<div class="run-hist">';
+  ents.forEach(function(e){
+    var r=e.run;
+    var dist=r.distanceMi?(' · '+r.distanceMi+' mi'):'';
+    var dur=r.durationMin?(r.durationMin+' min'):'—';
+    var rpe=r.rpe?(' · RPE '+r.rpe):'';
+    s+='<div class="run-hrow">'+
+      '<div class="run-hrow-top"><span class="run-hdate">'+dayDate(e.w,e.d)+'</span>'+
+        '<span class="run-hach" style="color:'+runAchColor(r.achilles)+'">'+runAchLabel(r.achilles)+'</span></div>'+
+      '<div class="run-hmeta">'+
+        '<span class="run-hphase" style="color:'+runPhaseColor(r.phase)+'">'+(r.phase||'—')+'</span>'+
+        ' · '+(r.location||'—')+' · '+dur+dist+rpe+(r.hr?(' · '+r.hr+' bpm'):'')+'</div>'+
+      (r.notes?'<div class="run-hnote">'+rEsc(r.notes)+'</div>':'')+
+    '</div>';
+  });
+  return s+'</div>';
+}
+function runCorrelation(){
+  var ents=runEntries(), rows=[];
+  ents.forEach(function(e){
+    var ld=S.log[e.w+'-'+e.d]||{}, r=e.run;
+    if(ld.oura||ld.hrv){
+      rows.push('<div class="run-hrow"><div class="run-hrow-top"><span class="run-hdate">'+dayDate(e.w,e.d)+'</span>'+
+        '<span class="run-hach" style="color:'+runAchColor(r.achilles)+'">'+runAchLabel(r.achilles)+'</span></div>'+
+        '<div class="run-hmeta">Sleep '+(ld.oura||'—')+' · HRV '+(ld.hrv||'—')+' ms · RPE '+(r.rpe||'—')+'</div></div>');
+    }
+  });
+  if(!rows.length) return '<div class="run-empty">Once you log runs on days with Oura sleep/HRV entered, this will line up recovery against perceived effort and Achilles signal.</div>';
+  return '<div class="run-hist">'+rows.join('')+'</div>';
+}
 
 // ═══════════════════════════════════════════════════════
 //  MASTER RENDER
